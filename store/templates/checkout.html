@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="{% url 'payment' %}" method="post">
+    {% csrf_token %}
+<div class="container">
+    <div class="row mt-5">
+     <div class="col-sm-6">
+       <h4>Order Summary</h4>
+       <hr>
+       {% for item in user_items %}        
+         <div class="card mb-2">
+           <div class="card-body">
+             <h5>Product: {{item.product.title}}</h5>
+             <p>Quantity: {{item.quantity}}</p>
+             <p class="fw-bold">Price: {{item.total_cost}}</p>
+           </div>
+         </div>
+         {% endfor %}
+         <p class="fw-bold">
+            <input type="hidden" name="total_amount" value="{{total_amount}}">
+            Total cost : {{total_amount}}
+         </p>
+       <small>Term and Condition: Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, ullam saepe! Iure optio repellat dolor velit, minus rem. Facilis cumque neque numquam laboriosam, accusantium adipisci nisi nihil in et quis?</small>
+     </div>
+     <div class="col-sm-4 offset-sm-1">
+       <!-- <h4>Select Shipping Address</h4> -->
+       <!-- <hr> -->
+       
+         <div class="card">            
+           <div class="card-body">
+            <div class="text-end ">
+                <button type="submit" class="btn btn-warning mt-3 px-5 fw-bold">Continue</button>
+            </div>          
+           </div>
+         </div>
+          
+          
+        
+       </div>
+     </div>
+   </div>
+</form>
+
+{% endblock content %}

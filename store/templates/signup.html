@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="p-4 m-4 ">
+        <div class="col-lg-5 mx-auto border rounded pt-4 pb-3 ps-3 pe-3">
+            <h3 class="alert alert-light border rounded " >create an account</h3>
+            <form action="{% url 'signup' %}" method="POST">
+                {% csrf_token %}
+                <!-- error -->
+                {% if error %}
+                    <div class="alert alert-danger" role="alert">
+                        {{error}}
+                    </div>
+                {% endif %}
+                <!-- firstname -->
+                <div class="form-group">
+                    <label for="1" >Username</label>
+                    <input type="text" name="username" class="form-control form-control-sm" id="1" value="{{values.first_name}}" placeholder="username">
+                </div>
+               
+                
+
+                <!-- email -->
+                <div class="form-group">
+                        <label for="4" >Email</label>
+                        <input type="email" name="email" class="form-control form-control-sm" id="4" value="{{values.email}}" placeholder="name@example.com">
+                </div>
+                <!-- password -->
+                <div class="form-group">
+                    <label for="{{forloop.counter}}" >Password</label>
+                    <input type="password" name="password" class="form-control form-control-sm" id="{{forloop.counter}}" placeholder="*****">
+                </div>
+                
+                <div class="form-group">
+                    <input type="submit" value="Create an Account" class="btn btn-sm btn-info">
+                </div>
+            
+            
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
